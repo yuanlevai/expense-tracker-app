@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+    <title>Expense Tracker</title>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Header -->
+        <div class="app-header">
+            <div class="brand">
+                <i class="fas fa-wallet"></i>Expense Tracker
+            </div>
+            <div class="header-actions">
+                <button class="theme-btn" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <button id="clearAllBtn">
+                    <i class="fas fa-trash"></i>
+                    <span>Clear All</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Balance</div>
+                <div class="stat-value balance" id="totalBalance">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Income</div>
+                <div class="stat-value income" id="totalIncome">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Expense</div>
+                <div class="stat-value expense" id="totalExpense">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Transactions</div>
+                <div class="stat-value" id="totalTransactions">0</div>
+            </div>
+        </div>
+
+        <!-- main -->
+        <div class="main-grid">
+
+            <!-- Left col -->
+            <div class="left-col">
+                <!-- form add -->
+                <div class="add-form">
+                    <h3><i class="fas fa-plus-circle" style="color: var(--accent);"></i>
+                        Add Transactions
+                    </h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="">Description</label>
+                            <input type="text" id="descInput" placeholder="Masukan deskripsi">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Amount</label>
+                            <input type="number" id="amountInput" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Category</label>
+                            <select name="" id="categorySelect">
+                                <option value="Food">🍔 Food</option>
+                                <option value="Transport">🚕 Transport</option>
+                                <option value="Shopping">🛍️ Shopping</option>
+                                <option value="Bills">💡 Bills</option>
+                                <option value="Entertainment">🎬 Entertainment</option>
+                                <option value="Health">💊 Health</option>
+                                <option value="Education">📚 Education</option>
+                                <option value="salary">💰 Salary</option>
+                                <option value="Other">📌 Other</option>
+                            </select>
+                        </div>
+                        <button class="btn-add" id="addBtn"><i class="fas fa-plus"></i>Add</button>
+                    </div>
+                    <div class="" style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+                        <label for="" style="display: flex; align-items: center; gap: 6px; font-size: 14px;">
+                            <input type="radio" name="type" value="expense" checked>Expense
+                        </label>
+                        <label for="" style="display: flex; align-items: center; gap: 6px; font-size: 14px;">
+                            <input type="radio" name="type" value="income">Income
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-card">
+                    <h3><i class="fas fa-chart-pie" style="color: var(--accent);"></i> Spending By Category</h3>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Expense list  -->
+            <div class="right-col">
+                <div class="expenses-header">
+                    <h3><i class="fas fa-list" style="color: var(--accent);"></i> Transactions</h3>
+                    <div class="filter-group">
+                        <select name="" id="filterCategory">
+                            <option value="all">All Categories</option>
+                            <option value="Food">🍔 Food</option>
+                            <option value="Transport">🚕 Transport</option>
+                            <option value="Shopping">🛍️ Shopping</option>
+                            <option value="Bills">💡 Bills</option>
+                            <option value="Entertainment">🎬 Entertainment</option>
+                            <option value="Health">💊 Health</option>
+                            <option value="Education">📚 Education</option>
+                            <option value="salary">💰 Salary</option>
+                            <option value="Other">📌 Other</option>
+                        </select>
+
+                        <select name="" id="filterType">
+                            <option value="all">All</option>
+                            <option value="expense">Expense</option>
+                            <option value="income">Income</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="expenses-list" id="expensesList">
+                    <div class="no-expenses">No transactions yet. Add your first transaction.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
